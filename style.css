@@ -1,0 +1,863 @@
+/* Basic Reset & Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette: Soothing Reds, Warm Greys/Beiges, Gold/Peach Accent */
+    --primary-bg: #F8F8F8; /* Light off-white for main background */
+    --secondary-bg: #EFEFEF; /* Slightly darker off-white for subtle contrast */
+
+    /* Dynamic Red Gradient Family */
+    --accent-red-light: #F29F9F; /* Lighter shade of red for gradients */
+    --accent-red: #E57373;     /* Core soft, warm red */
+    --accent-red-dark: #CC5C5C;  /* Darker red for hover states and gradient end */
+
+    --accent-gold: #FFC06F; /* Soft gold/peach for secondary accent/highlights */
+    --accent-gold-dark: #E6AD5C; /* Darker gold for hover */
+
+    --text-dark: #4A4A4A; /* Soft dark grey for main text */
+    --text-light: #FFFFFF; /* Pure white for text on dark backgrounds */
+    --border-color: #DCDCDC; /* Light grey for subtle borders */
+
+    /* Shadows for depth */
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.15); /* More pronounced */
+    --shadow-strong: rgba(0, 0, 0, 0.25); /* For strong hover effect */
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--primary-bg);
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Base styling for main content sections */
+.section-block {
+    padding: 100px 0; /* Generous padding */
+    position: relative;
+    overflow: hidden;
+    background-color: var(--primary-bg); /* Default light background */
+    border-bottom: 1px solid var(--border-color); /* Subtle separator */
+    transition: background-color 0.5s ease; /* Smooth background change */
+}
+
+/* Specific background for alternating sections or highlights */
+.about-me-section,
+.global-time-section,
+.quotes-section { /* Added quotes section here for alternating background */
+    background-color: var(--secondary-bg);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px; /* Consistent horizontal padding */
+}
+
+.content-wrapper {
+    text-align: center;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-family: 'Merriweather Sans', sans-serif;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+h1.hero-title {
+    font-size: 4.8em; /* Slightly larger */
+    color: var(--text-light);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.4); /* Stronger shadow */
+    margin-bottom: 20px;
+    letter-spacing: -1.5px; /* Tighter for modern look */
+}
+
+.hero-tagline {
+    font-size: 1.7em; /* Slightly larger */
+    color: rgba(255, 255, 255, 0.95); /* More opaque */
+    margin-bottom: 40px;
+    font-weight: 300;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.section-title {
+    font-size: 3.2em; /* Slightly larger */
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 90px; /* Wider underline */
+    height: 5px; /* Thicker underline */
+    background-color: var(--accent-red);
+    border-radius: 2px;
+}
+
+.section-description {
+    font-size: 1.25em; /* Slightly larger */
+    line-height: 1.8;
+    max-width: 850px; /* Wider max-width */
+    margin: 0 auto 30px;
+    color: #666;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 15px 40px; /* Slightly larger padding */
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.15em; /* Slightly larger font */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother, more 'bouncy' transition */
+    cursor: pointer;
+    border: none;
+    position: relative;
+    overflow: hidden; /* For dynamic effects */
+    z-index: 1;
+}
+
+.btn::before { /* Dynamic hover background effect */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-red-light)); /* Subtle gradient */
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+    z-index: -1;
+}
+
+.btn-primary {
+    background-color: var(--accent-red);
+    color: var(--text-light);
+    box-shadow: 0 8px 20px rgba(229, 115, 115, 0.4); /* Stronger shadow */
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-red-dark);
+    transform: translateY(-4px); /* More pronounced lift */
+    box-shadow: 0 12px 30px rgba(204, 92, 92, 0.5); /* Even stronger shadow */
+}
+.btn-primary:active { /* Click/Press animation */
+    transform: translateY(0px);
+    box-shadow: 0 4px 10px rgba(204, 92, 92, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--accent-gold);
+    color: var(--text-dark);
+    box-shadow: 0 8px 20px rgba(255, 192, 111, 0.4);
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent-gold-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(230, 173, 92, 0.5);
+}
+.btn-secondary:active { /* Click/Press animation */
+    transform: translateY(0px);
+    box-shadow: 0 4px 10px rgba(230, 173, 92, 0.3);
+}
+
+/* Dynamic background for all buttons on hover */
+.btn:hover::before {
+    opacity: 0.15; /* Subtle overlay */
+}
+
+
+/* --- Header & Main Navigation --- */
+.site-header {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* More dynamic gradient */
+    background: linear-gradient(160deg, var(--accent-red-light), var(--accent-red), var(--accent-red-dark));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-light);
+    overflow: hidden;
+}
+
+/* Optional: Subtle image/pattern overlay on hero gradient for "engineered" feel */
+.site-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('assets/images/subtle-grid-pattern.png') repeat; /* Replace with your subtle grid/tech pattern */
+    opacity: 0.15; /* Slightly more visible */
+    z-index: 1;
+}
+
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.98);
+    padding: 18px 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 15px var(--shadow-medium); /* Stronger shadow */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease;
+}
+
+.nav-logo {
+    color: var(--accent-red);
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 2.1em; /* Slightly larger */
+    font-weight: 800;
+    margin-left: 40px;
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin-right: 40px;
+}
+
+.nav-links li {
+    margin-left: 35px;
+}
+
+.nav-links a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.08em; /* Slightly larger */
+    transition: color 0.3s ease, transform 0.2s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px; /* Thicker line */
+    background-color: var(--accent-gold);
+    bottom: -6px; /* Lower */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--accent-red);
+    transform: translateY(-3px); /* More pronounced lift */
+}
+
+.hero-content-wrapper {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+    animation: fadeInScale 1s ease-out;
+}
+
+/* --- About Section --- */
+/* --- About Section --- */
+.about-me-section {
+    text-align: center;
+    padding-top: 120px;
+}
+
+.about-content {
+    display: flex; /* Make the container a flex container */
+    flex-direction: column; /* Stack items vertically by default for mobile-first */
+    align-items: center; /* Center items horizontally in a column layout */
+    text-align: center; /* Ensure text within about-content is centered if not already */
+}
+
+/* For larger screens, arrange them side-by-side */
+@media (min-width: 768px) { /* Adjust breakpoint as needed */
+    .about-content {
+        flex-direction: row; /* Arrange items horizontally */
+        justify-content: center; /* Center the entire flex container */
+        align-items: flex-start; /* Align items to the top of the flex container */
+        gap: 50px; /* Add some space between the image and text content */
+        text-align: left; /* Align text to the left when side-by-side */
+    }
+
+    /* Adjust the text container within about-content to ensure proper alignment */
+    .about-text-wrapper { /* You'll add this new div in your HTML */
+        max-width: 600px; /* Limit the width of the text block */
+        text-align: left; /* Ensure the text within this wrapper aligns left */
+    }
+
+    .about-content .section-title {
+        text-align: left; /* Align the title left when content is side-by-side */
+    }
+
+    .about-content .section-title::after {
+        left: 0; /* Align the underline to the left of the title */
+        transform: translateX(0);
+    }
+}
+
+
+.profile-circle-img {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    object-fit: cover;
+    /* margin-bottom: 40px; <-- Remove this for flexbox control */
+    margin-right: 0; /* Reset any default margin-right */
+    margin-left: 0; /* Reset any default margin-left */
+    border: 7px solid var(--accent-gold);
+    box-shadow: 0 8px 30px var(--shadow-light);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+}
+
+/* Keep existing styles for .profile-circle-img and .section-title below this */
+/* ... (rest of your .profile-circle-img and .section-title styles) ... */
+
+
+
+.profile-circle-img:hover {
+    transform: scale(1.05) rotate(3deg); /* More dynamic hover */
+    box-shadow: 0 12px 40px var(--shadow-medium);
+}
+
+/* --- Skills Section --- */
+.skills-section {
+    background-color: var(--primary-bg);
+    padding-top: 80px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px; /* Slightly more gap */
+    margin-top: 50px;
+    text-align: left;
+}
+
+.skill-category {
+    background-color: var(--text-light);
+    padding: 35px; /* More padding */
+    border-radius: 12px; /* Slightly more rounded */
+    box-shadow: 0 6px 20px var(--shadow-light);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    border: 1px solid transparent; /* For border animation */
+}
+
+.skill-category:hover {
+    transform: translateY(-8px); /* More lift */
+    box-shadow: 0 12px 30px var(--shadow-medium);
+    border-color: var(--accent-gold); /* Gold border on hover */
+}
+
+.skill-category h3 {
+    font-size: 1.9em;
+    color: var(--accent-red);
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-category li {
+    font-size: 1.15em; /* Slightly larger */
+    padding: 10px 0; /* More padding */
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.skill-category li:last-child {
+    border-bottom: none;
+}
+
+.skill-category li:hover {
+    color: var(--accent-red-dark);
+}
+
+.skill-category li::before {
+    content: '✔';
+    color: var(--accent-gold);
+    margin-right: 12px;
+    font-size: 1em; /* Larger checkmark */
+    transition: transform 0.2s ease;
+}
+
+.skill-category li:hover::before {
+    transform: scale(1.1);
+}
+
+
+/* --- Projects Section --- */
+.projects-section {
+    background-color: var(--secondary-bg);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 45px; /* More space */
+    margin-top: 50px;
+}
+
+.project-card {
+    background-color: var(--text-light);
+    border-radius: 15px; /* More rounded */
+    box-shadow: 0 10px 30px var(--shadow-light); /* Stronger default shadow */
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid transparent; /* For border animation */
+}
+
+.project-card:hover {
+    transform: translateY(-10px); /* More pronounced lift */
+    box-shadow: 0 18px 45px var(--shadow-medium); /* Even stronger shadow */
+    border-color: var(--accent-red-light); /* Light red border on hover */
+}
+
+.project-thumbnail {
+    width: 100%;
+    height: 260px; /* Slightly taller */
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85) saturate(0.95); /* Slightly darker/desaturated */
+    transition: filter 0.4s ease;
+}
+
+.project-card:hover .project-thumbnail {
+    filter: brightness(1) saturate(1.1); /* Brighter and more vibrant on hover */
+}
+
+.project-info {
+    padding: 30px; /* More padding */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-title {
+    font-size: 1.9em;
+    color: var(--accent-red);
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.project-description {
+    font-size: 1.05em;
+    color: #555;
+    margin-bottom: 25px;
+    text-align: left;
+    flex-grow: 1;
+}
+
+.project-tech-stack {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.project-tech-stack span {
+    display: inline-block;
+    background-color: var(--secondary-bg);
+    color: var(--text-dark);
+    font-size: 0.9em; /* Slightly larger */
+    padding: 7px 14px; /* More padding */
+    border-radius: 6px; /* Slightly more rounded */
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.project-tech-stack span:hover {
+    background-color: var(--accent-gold);
+    color: var(--text-dark);
+}
+
+.project-links {
+    display: flex;
+    justify-content: flex-start;
+    gap: 18px; /* More space */
+    margin-top: auto;
+}
+
+/* --- Global Time Section (Clocks) --- */
+.global-time-section {
+    text-align: center;
+    background-color: var(--primary-bg);
+}
+
+.clocks-display-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 35px; /* More gap */
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.clock-display-item {
+    background-color: var(--text-light);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    padding: 28px; /* More padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    border: 2px solid transparent; /* For border animation */
+}
+
+.clock-display-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 35px var(--shadow-medium);
+    border-color: var(--accent-red-light); /* Light red border on hover */
+}
+
+.timezone-name {
+    margin-top: 25px; /* More margin */
+    font-weight: 700; /* Bolder */
+    color: var(--accent-red);
+    font-size: 1.25em;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* More spacing */
+}
+
+canvas {
+    width: 170px !important; /* Slightly larger clock size */
+    height: 170px !important;
+    border: 3px solid var(--accent-gold);
+    border-radius: 50%;
+    background-color: var(--text-light);
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.08); /* Stronger inner shadow */
+}
+
+/* --- Famous Quotes Section --- */
+.quotes-section {
+    text-align: center;
+    padding: 80px 0; /* Slightly less padding than main sections */
+    background-color: var(--secondary-bg); /* Alternating background */
+}
+
+.quote-display-area {
+    margin: 50px auto 0;
+    max-width: 800px;
+    min-height: 150px; /* Ensure space even with short quotes */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* For quote animation */
+}
+
+.quote-text {
+    font-family: 'Merriweather Sans', sans-serif; /* A more elegant font for quotes */
+    font-size: 2.2em; /* Large and impactful */
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.4;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 0 20px;
+}
+
+.quote-text::before,
+.quote-text::after {
+    content: '"';
+    font-size: 3em;
+    color: var(--accent-gold);
+    position: absolute;
+    opacity: 0.7;
+}
+.quote-text::before {
+    left: 0;
+    top: -10px;
+}
+.quote-text::after {
+    right: 0;
+    bottom: -40px;
+    transform: rotate(180deg);
+}
+
+.quote-author {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--accent-red-dark);
+    margin-top: 15px;
+}
+
+/* Quote animation classes (managed by JS) */
+.quote-fade-out {
+    opacity: 0;
+    transform: translateY(20px);
+}
+.quote-fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* --- Contact Section --- */
+.contact-section {
+    /* Enhanced gradient for a more dynamic feel */
+    background: linear-gradient(160deg, var(--accent-red-dark), var(--accent-red), var(--accent-red-light));
+    color: var(--text-light);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.contact-section .section-title {
+    color: var(--text-light);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.contact-section .section-title::after {
+    background-color: var(--accent-gold);
+}
+
+.contact-section .section-description {
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* More space */
+    margin-top: 50px; /* More margin */
+}
+
+
+/* --- Site Footer --- */
+footer.site-footer {
+    /* background-color: var(--text-dark);--primary-bg */
+    background-color: var(--primary-bg);
+    color: var(--accent-gold);
+    text-align: center;
+    padding: 12px 0; /* Reduced padding for ~9% height compared to previous */
+    font-size: 0.9em;
+    box-shadow: inset 0 5px 15px rgba(0,0,0,0.2); /* Subtle inner shadow for depth */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Reduced gap */
+}
+
+.footer-social-links a {
+    color: var(--secondary-bg);
+    margin: 0 18px; /* More space */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.05em; /* Slightly larger */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.footer-social-links a:hover {
+    color: var(--accent-gold);
+    transform: translateY(-2px);
+}
+
+.footer-copyright {
+    margin-top: 0;
+    font-size: 0.88em; /* Slightly larger */
+    color: #BBBBBB;
+}
+
+/* --- Animations --- */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* --- Responsive Design (Media Queries) --- */
+@media (max-width: 992px) {
+    h1.hero-title {
+        font-size: 3.8em;
+    }
+    .hero-tagline {
+        font-size: 1.5em;
+    }
+    .section-title {
+        font-size: 2.8em;
+    }
+    .btn {
+        padding: 13px 30px;
+        font-size: 1.05em;
+    }
+    .project-grid {
+        gap: 35px;
+    }
+    .project-thumbnail {
+        height: 220px;
+    }
+    .clocks-display-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Further adjusted for 5 clocks */
+        gap: 25px;
+    }
+    canvas {
+        width: 150px !important;
+        height: 150px !important;
+    }
+    .quote-text {
+        font-size: 1.8em;
+    }
+    .quote-author {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        padding: 15px 0;
+    }
+    .nav-logo {
+        font-size: 1.9em;
+        margin-bottom: 5px;
+    }
+    .nav-links li {
+        margin: 5px 10px;
+        font-size: 1em;
+    }
+    h1.hero-title {
+        font-size: 3em;
+    }
+    .hero-tagline {
+        font-size: 1.3em;
+    }
+    .section-block {
+        padding: 70px 0;
+    }
+    .section-title {
+        font-size: 2.2em;
+    }
+    .profile-circle-img {
+        width: 200px;
+        height: 200px;
+    }
+    .skills-grid, .project-grid {
+        grid-template-columns: 1fr;
+    }
+    .project-thumbnail {
+        height: 180px;
+    }
+    .project-title {
+        font-size: 1.7em;
+    }
+    .clocks-display-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    canvas {
+        width: 130px !important;
+        height: 130px !important;
+    }
+    .quote-text {
+        font-size: 1.5em;
+        padding: 0 10px; /* Reduce padding for quotes */
+    }
+    .quote-text::before, .quote-text::after {
+        font-size: 2.5em;
+    }
+    .quote-author {
+        font-size: 1em;
+    }
+    .contact-methods {
+        gap: 20px;
+    }
+    .btn {
+        width: 90%;
+        max-width: 350px;
+        font-size: 1em;
+    }
+    footer.site-footer {
+        padding: 8px 0; /* Reduced padding for ~9% height on mobile */
+    }
+    .footer-content {
+        gap: 8px;
+    }
+    .footer-social-links a {
+        margin: 0 10px;
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links li {
+        margin: 5px 6px;
+        font-size: 0.9em;
+    }
+    h1.hero-title {
+        font-size: 2.5em;
+    }
+    .hero-tagline {
+        font-size: 1.1em;
+    }
+    .section-title {
+        font-size: 1.9em;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.95em;
+    }
+    canvas {
+        width: 110px !important;
+        height: 110px !important;
+    }
+    .clocks-display-grid {
+        grid-template-columns: 1fr;
+    }
+    .quote-text {
+        font-size: 1.2em;
+    }
+    .quote-text::before, .quote-text::after {
+        font-size: 2em;
+    }
+    .quote-author {
+        font-size: 0.9em;
+    }
+    .footer-social-links a {
+        margin: 0 8px;
+        font-size: 0.85em;
+    }
+}
