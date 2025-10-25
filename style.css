@@ -277,6 +277,7 @@ h1.hero-title {
 }
 
 .hero-content-wrapper {
+    /* background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%2Fid%2FOIP.lhmSVc-l1xthHSEnTJxl7gHaEK%3Fpid%3DApi&f=1&ipt=a29f76b775bfc8cefc14289a0973ef51f6a6fb8681abe31a55566c60b6381dd3&ipo=images'); */
     position: relative;
     z-index: 2;
     padding: 0 20px;
